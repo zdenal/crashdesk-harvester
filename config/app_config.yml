@@ -1,0 +1,8 @@
+common: &common
+  :firehose_url: "//localhost:7474"
+
+development: &development
+  <<: *common
+
+production:
+  <<: *common
