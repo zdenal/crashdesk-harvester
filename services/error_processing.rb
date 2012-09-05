@@ -27,8 +27,9 @@ module Services
     def create_new_error
       @error = @app.errors.create({
         crc:    log.crc,
-        hash:   log.hash,
+        hash_id:   log.hash_id,
         title:  log.exception_message,
+        backtrace:  log.backtrace,
         no: 1
       })
       create_error_info
@@ -37,7 +38,6 @@ module Services
     def create_error_info
       @error_info = @error.error_info.create({
         env:              log.environment,
-        backtrace:        log.backtrace,
         occured_at:       log.occured_at,
         exception_class:  log.exception_class
       })
