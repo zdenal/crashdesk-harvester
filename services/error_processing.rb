@@ -15,11 +15,6 @@ module Services
       else
         create_new_error
       end
-      firehose = Firehose::Producer.new(APP_CONFIG[:firehose_url])
-      firehose.publish({
-        title: error.title,
-        no: error.no
-      }.to_json).to("/errors/#{error._id}")
     end
 
   private
@@ -42,6 +37,15 @@ module Services
         exception_class:  log.exception_class
       })
       @error.update_attribute(:no, @error.error_info.size)
+    end
+
+    def push_firehose_info
+      firehose = Firehose::Producer.new(APP_CONFIG[:firehose_url])
+      firehose.publish({
+        title: error.title,
+        no: error.no
+      }.to_json).to("/errors/#{error._id}")
+    rescue Exception => exc 
     end
 
   end
