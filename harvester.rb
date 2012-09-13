@@ -5,7 +5,6 @@ require 'mongoid'
 require 'pp'
 require 'ruby-debug'
 require 'resque'
-require 'active_resource'
 require 'firehose'
 
 
@@ -27,19 +26,14 @@ get '/debug' do
 end
 
 post '/v1/crashes' do
-  #app_id = request.env['HTTP_X_CRASHDESK_APIKEY']
-  app_id = App.first._id
-  if App.where(id: app_id).exists?
+  app_key = request.env['HTTP_X_CRASHDESK_APPKEY']
+  #app_key = App.first._id
+  if App.where(id: app_key).exists?
     e = JSON.parse(request.env["rack.input"].read)
-    # api_key in error send from crashdesk-rails-test
-    # is set 12345, so we need put into error some
-    # existing api_key
-    e['api_key'] = app_id
-    #####################
     log = Crashlog.new(e)
     log.save
     Resque.enqueue(CrashlogProcessor, log.id)
-    logger.info "[INFO] #{Time.now.to_s}: #{app_id} got #{log.crc}"
+    logger.info "[INFO] #{Time.now.to_s}: #{app_key} got #{log.crc}"
   else
     logger.error "[ERROR] #{Time.now.to_s}: invalid app_uuid try to connect"
   end

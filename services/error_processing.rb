@@ -5,7 +5,7 @@ module Services
 
     def initialize(log)
       @log = log
-      @app = App.find(log.api_key)
+      @app = App.find(log.app_key)
       @error = app.errors.find_by(crc: log.crc)
     end
 
