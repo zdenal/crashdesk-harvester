@@ -7,3 +7,5 @@ gem 'mongo'
 gem "mongoid", "~> 3.0.0.rc"
 gem "resque"
 gem "firehose"
+gem "capistrano"
+gem 'rvm-capistrano'
