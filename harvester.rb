@@ -9,8 +9,8 @@ require 'firehose'
 
 
 config_file = File.join( 'config', "app_config.yml" )
-APP_CONFIG = YAML.load_file(config_file)[ENV['ENVIRONMENT']].symbolize_keys
-MONGOID_CONFIG = Mongoid.load!('mongoid.yml')[ENV['ENVIRONMENT']]
+APP_CONFIG = YAML.load_file(config_file)[ENV['RACK_ENV']].symbolize_keys
+MONGOID_CONFIG = Mongoid.load!('mongoid.yml')[ENV['RACK_ENV']]
 
 %w{models workers services}.each do |dir|
   Dir["./#{dir}/*.rb"].each {|file| require file }
