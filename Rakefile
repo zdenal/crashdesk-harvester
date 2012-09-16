@@ -3,4 +3,5 @@
 # for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
 
 require './harvester'
-require 'resque/tasks'
+require 'rake'
+Dir.glob('lib/tasks/*.rake').each { |r| import r }

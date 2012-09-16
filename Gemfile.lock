@@ -18,8 +18,6 @@ GEM
       net-sftp (>= 2.0.0)
       net-ssh (>= 2.0.14)
       net-ssh-gateway (>= 1.1.0)
-    capistrano-resque (0.0.7)
-      capistrano
     columnize (0.3.6)
     cookiejar (0.3.0)
     daemons (1.1.9)
@@ -115,7 +113,6 @@ PLATFORMS
 DEPENDENCIES
   bson_ext
   capistrano
-  capistrano-resque
   debugger
   firehose
   mongo

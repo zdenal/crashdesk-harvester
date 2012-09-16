@@ -1,6 +1,5 @@
 require 'bundler/capistrano'
 require 'rvm/capistrano'
-require 'capistrano-resque'
 
 set :scm, :subversion
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
@@ -44,7 +43,6 @@ ssh_options[:keys] = [File.join(ENV["HOME"], ".ssh", "id_rsa")]
 #     run "#{try_sudo} touch #{File.join(current_path,'tmp','restart.txt')}"
 #   end
 # end
-
 namespace :deploy do
 
   desc "restarting mod_rails with restart.txt"
@@ -57,6 +55,13 @@ namespace :deploy do
     task t, :roles => :app do ; end
   end
 
+end
+
+namespace :resque do
+  desc "restarting workers"
+  task :restart, :roles => :app, :except => { :no_release => true } do
+    run "cd #{current_path} && RACK_ENV=#{rails_env} #{rake} queue:restart_workers"
+  end
 end
 
 before 'deploy:setup', 'rvm:install_ruby'
