@@ -11,7 +11,7 @@ require 'firehose'
 config_file = File.join( 'config', "app_config.yml" )
 APP_CONFIG = YAML.load_file(config_file)[ENV['RACK_ENV']].symbolize_keys
 MONGOID_CONFIG = Mongoid.load!('mongoid.yml')[ENV['RACK_ENV']]
-logger = Logger.new("logs/#{ENV['RACK_ENV']}_apps_info.log")
+logger = Logger.new("log/#{ENV['RACK_ENV']}_apps_info.log")
 
 %w{models workers services}.each do |dir|
   Dir["./#{dir}/*.rb"].each {|file| require file }
