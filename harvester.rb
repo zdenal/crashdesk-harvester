@@ -7,7 +7,7 @@ require 'ruby-debug'
 require 'resque'
 require 'firehose'
 
-
+ENV['RACK_ENV'] ||= 'production'
 config_file = File.join( 'config', "app_config.yml" )
 APP_CONFIG = YAML.load_file(config_file)[ENV['RACK_ENV']].symbolize_keys
 MONGOID_CONFIG = Mongoid.load!('mongoid.yml')[ENV['RACK_ENV']]
