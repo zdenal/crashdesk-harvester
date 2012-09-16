@@ -1,5 +1,6 @@
 require 'bundler/capistrano'
 require 'rvm/capistrano'
+require 'capistrano-resque'
 
 set :scm, :subversion
 # Or: `accurev`, `bzr`, `cvs`, `darcs`, `git`, `mercurial`, `perforce`, `subversion` or `none`
@@ -23,6 +24,8 @@ set :deploy_to, "/mnt/app/#{application}"
 set :rvm_ruby_string, '1.9.3-p194@crashdesk-harvester'
 set :rvm_bin_path, '/usr/local/rvm/bin'
 set :rvm_type, :system
+
+set :workers, { "CrashLogs" => 5 }
 
 default_run_options[:pty] = true
 
@@ -57,3 +60,4 @@ namespace :deploy do
 end
 
 before 'deploy:setup', 'rvm:install_ruby'
+after "deploy:restart", "resque:restart"
