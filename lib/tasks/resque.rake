@@ -16,7 +16,8 @@ namespace :resque do
 
   desc "Start workers"
   task :start_workers do
-    run_worker("GrashLogs", 3)
+    # Update this for get params from capistrano
+    run_worker("CrashLogs", 5)
   end
 
   def store_pids(pids, mode)
