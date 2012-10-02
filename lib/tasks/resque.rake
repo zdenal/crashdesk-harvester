@@ -24,13 +24,15 @@ namespace :resque do
     pids_to_store += read_pids if mode == :append
 
     # Make sure the pid file is writable.
-    File.open(File.expand_path('tmp/pids/resque.pid', Rails.root), 'w') do |f|
+    pid_directory = File.expand_path('tmp/pids', Sinatra::Application.root)
+    FileUtils.mkdir_p pid_directory
+    File.open(File.join(pid_directory, 'resque.pid'), 'a') do |f|
       f <<  pids_to_store.join(',')
     end
   end
 
   def read_pids
-    pid_file_path = File.expand_path('tmp/pids/resque.pid', Rails.root)
+    pid_file_path = File.expand_path('tmp/pids/resque.pid', Sinatra::Application.root)
     return []  if ! File.exists?(pid_file_path)
 
     File.open(pid_file_path, 'r') do |f| 
@@ -56,9 +58,9 @@ namespace :resque do
     puts "Starting #{count} worker(s) with QUEUE: #{queue}"
 
     ##  make sure log/resque_err, log/resque_stdout are writable.
-    ops = {:pgroup => true, :err => [(Rails.root + "log/resque_err").to_s, "a"], 
-                            :out => [(Rails.root + "log/resque_stdout").to_s, "a"]}
-    env_vars = {"QUEUE" => queue.to_s, 'RAILS_ENV' => Rails.env.to_s}
+    ops = {:pgroup => true, :err => [(Sinatra::Application.root + "/log/resque_err").to_s, "a"], 
+                            :out => [(Sinatra::Application.root + "/log/resque_stdout").to_s, "a"]}
+    env_vars = {"QUEUE" => queue.to_s, 'RAILS_ENV' => Sinatra::Application.environment.to_s}
 
     pids = []
     count.times do

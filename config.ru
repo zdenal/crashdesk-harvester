@@ -1,7 +1,7 @@
 require './harvester.rb'
 
 set :environment, ENV['RACK_ENV'] || :production
-set :app_file,     'harvester.rb'
+set :app_file, 'harvester.rb'
 disable :run
 
 std_log = File.new("log/#{ENV['RACK_ENV']}.log", "a+")

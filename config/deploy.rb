@@ -60,7 +60,7 @@ end
 namespace :resque do
   desc "restarting workers"
   task :restart, :roles => :app, :except => { :no_release => true } do
-    run "cd #{current_path} && RACK_ENV=#{rails_env} #{rake} requeue:restart_workers"
+    run "cd #{current_path} && RACK_ENV=#{rails_env} #{rake} resque:restart_workers"
   end
 end
 
