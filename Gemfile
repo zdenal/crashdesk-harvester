@@ -10,3 +10,4 @@ gem "firehose"
 gem "capistrano"
 gem 'rvm-capistrano'
 gem 'rake'
+gem 'foreman'
