@@ -6,7 +6,7 @@ class App
   field :app_type_id, type: Integer
 
   # Relations
-  has_many :errors
+  embeds_many :error_info
 
   # Validations
   validates :name, presence: true
