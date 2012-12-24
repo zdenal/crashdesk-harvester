@@ -20,7 +20,7 @@ end
 get '/debug' do
 end
 
-post '/v1/user' do
+post '/v1/user_feedback' do
   app_key = params[:app_key]
   # app_key = App.first.id # todo
   if App.where(id: app_key).exists?
