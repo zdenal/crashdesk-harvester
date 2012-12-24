@@ -25,3 +25,14 @@ tak v crashdesk apps.
 Start Firehose
 --------------
 firehose server
+
+
+Manual start
+------------
+
+```sh
+redis-server
+mongod
+QUEUE=* VERBOSE=true bundle exec rake resque:work
+bundle exec ruby harvester.rb
+```
