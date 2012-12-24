@@ -23,7 +23,7 @@ module Services
       @user_feedback = @error.user_feedback.create({
         email:      @log.email,
         message:    @log.message,
-        occured_at: nil
+        occured_at: @log.occured_at
       })
     end
 
