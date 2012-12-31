@@ -45,7 +45,7 @@ module Services
         title: error.title,
         no: error.no
       }.to_json).to("/errors/#{error._id}")
-    rescue Exception => exc 
+    rescue Exception => exc
     end
 
   end

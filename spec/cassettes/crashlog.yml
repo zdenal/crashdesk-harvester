@@ -1,0 +1,1149 @@
+--- !ruby/hash:Moped::BSON::Document
+_id: !ruby/object:Moped::BSON::ObjectId
+  raw_data: !binary |-
+    UJrG8agBjTjGAAAH
+app_key: 509ac1c0a8018d873b000012
+hash_id: cb70178ceaa2eae97e51c62f9f26bd0d
+crc: '813962895'
+occured_at: '2012-11-07T20:39:13Z'
+environment:
+  project_root:
+    path: /Users/zdenko/Projects/crashdesk-test
+  environment_name: 
+  hostname: Zdenkos-MacBook-Air.local
+  language: ruby
+  language_version: 1.9.3
+  language_platform: x86_64-darwin11.4.2
+backtrace:
+- file: /Users/zdenko/Projects/crashdesk-test/app/controllers/home_controller.rb
+  number: 30
+  method: test3
+  source_pre_lines:
+  - ! '      wants.html # index.html.erb'
+  - ! '      wants.xml  { render :xml => @model_class_names }'
+  - ! '    end'
+  - ! '  end'
+  - ! '  def test3'
+  source_line: ! '    @model_class_name = Test3.all'
+  source_post_lines:
+  - ! '  '
+  - ! '    respond_to do |wants|'
+  - ! '      wants.html # index.html.erb'
+  - ! '      wants.xml  { render :xml => @model_class_names }'
+  - ! '    end'
+- file: /Users/zdenko/Projects/crashdesk-test/app/controllers/home_controller.rb
+  number: 6
+  method: index
+  source_pre_lines:
+  - class HomeController < ApplicationController
+  - ! '  protect_from_forgery'
+  - ! '  def index'
+  - ! '    #klass = [\''Model1\'', \''Model2\'', \''Model3\'', \''Model4\''].sample'
+  - ! '    #@model_class_name = klass.constantize.send [:all, :find, :each].sample'
+  source_line: ! '    send [:test1,:test2,:test3,:test4].sample'
+  source_post_lines:
+  - ! '  '
+  - ! '    respond_to do |wants|'
+  - ! '      wants.html # index.html.erb'
+  - ! '      wants.xml  { render :xml => @model_class_names }'
+  - ! '    end'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_controller/metal/implicit_render.rb
+  number: 4
+  method: send_action
+  source_pre_lines:
+  - module ActionController
+  - ! '  module ImplicitRender'
+  - ! '    def send_action(method, *args)'
+  source_line: ! '      ret = super'
+  source_post_lines:
+  - ! '      default_render unless response_body'
+  - ! '      ret'
+  - ! '    end'
+  - ''
+  - ! '    def default_render(*args)'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/abstract_controller/base.rb
+  number: 167
+  method: process_action
+  source_pre_lines:
+  - ! '      # is the intended way to override action dispatching.'
+  - ! '      #'
+  - ! '      # Notice that the first argument is the method to be dispatched'
+  - ! '      # which is *not* necessarily the same as the action name.'
+  - ! '      def process_action(method_name, *args)'
+  source_line: ! '        send_action(method_name, *args)'
+  source_post_lines:
+  - ! '      end'
+  - ''
+  - ! '      # Actually call the method associated with the action. Override'
+  - ! '      # this method if you wish to change how action methods are called,'
+  - ! '      # not to add additional behavior around it. For example, you would'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_controller/metal/rendering.rb
+  number: 10
+  method: process_action
+  source_pre_lines:
+  - ! '    include AbstractController::Rendering'
+  - ''
+  - ! '    # Before processing, set the request formats in current controller formats.'
+  - ! '    def process_action(*) #:nodoc:'
+  - ! '      self.formats = request.formats.map { |x| x.ref }'
+  source_line: ! '      super'
+  source_post_lines:
+  - ! '    end'
+  - ''
+  - ! '    # Check for double render errors and set the content_type after rendering.'
+  - ! '    def render(*args) #:nodoc:'
+  - ! '      raise ::AbstractController::DoubleRenderError if response_body'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/abstract_controller/callbacks.rb
+  number: 18
+  method: block in process_action
+  source_pre_lines:
+  - ''
+  - ! '    # Override AbstractController::Base\''s process_action to run the'
+  - ! '    # process_action callbacks around the normal behavior.'
+  - ! '    def process_action(*args)'
+  - ! '      run_callbacks(:process_action, action_name) do'
+  source_line: ! '        super'
+  source_post_lines:
+  - ! '      end'
+  - ! '    end'
+  - ''
+  - ! '    module ClassMethods'
+  - ! '      # If :only or :except are used, convert the options into the'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activesupport-3.2.8/lib/active_support/callbacks.rb
+  number: 414
+  method: _run__682069021309204396__process_action__3612079205201292980__callbacks
+  source_pre_lines:
+  - ! '        name = __callback_runner_name(nil, symbol)'
+  - ! '        undef_method(name) if method_defined?(name)'
+  - ! '      end'
+  - ''
+  - ! '      def __callback_runner_name(key, kind)'
+  source_line: ! '        "_run__#{self.name.hash.abs}__#{kind}__#{key.hash.abs}__callbacks"'
+  source_post_lines:
+  - ! '      end'
+  - ''
+  - ! '      # This is used internally to append, prepend and skip callbacks to the'
+  - ! '      # CallbackChain.'
+  - ! '      #'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activesupport-3.2.8/lib/active_support/callbacks.rb
+  number: 405
+  method: __run_callback
+  source_pre_lines:
+  - ! '          class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1'
+  - ! '            def #{name}() #{str} end'
+  - ! '            protected :#{name}'
+  - ! '          RUBY_EVAL'
+  - ! '        end'
+  source_line: ! '        object.send(name, &blk)'
+  source_post_lines:
+  - ! '      end'
+  - ''
+  - ! '      def __reset_runner(symbol)'
+  - ! '        name = __callback_runner_name(nil, symbol)'
+  - ! '        undef_method(name) if method_defined?(name)'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activesupport-3.2.8/lib/active_support/callbacks.rb
+  number: 385
+  method: _run_process_action_callbacks
+  source_pre_lines:
+  - ! '      def __define_runner(symbol) #:nodoc:'
+  - ! '        runner_method = "_run_#{symbol}_callbacks" '
+  - ! '        unless private_method_defined?(runner_method)'
+  - ! '          class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1'
+  - ! '            def #{runner_method}(key = nil, &blk)'
+  source_line: ! '              self.class.__run_callback(key, :#{symbol}, self, &blk)'
+  source_post_lines:
+  - ! '            end'
+  - ! '            private :#{runner_method}'
+  - ! '          RUBY_EVAL'
+  - ! '        end'
+  - ! '      end'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activesupport-3.2.8/lib/active_support/callbacks.rb
+  number: 81
+  method: run_callbacks
+  source_pre_lines:
+  - ! '    #   run_callbacks :save do'
+  - ! '    #     save'
+  - ! '    #   end'
+  - ! '    #'
+  - ! '    def run_callbacks(kind, *args, &block)'
+  source_line: ! '      send("_run_#{kind}_callbacks", *args, &block)'
+  source_post_lines:
+  - ! '    end'
+  - ''
+  - ! '    private'
+  - ''
+  - ! '    # A hook invoked everytime a before callback is halted.'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/abstract_controller/callbacks.rb
+  number: 17
+  method: process_action
+  source_pre_lines:
+  - ! '    end'
+  - ''
+  - ! '    # Override AbstractController::Base\''s process_action to run the'
+  - ! '    # process_action callbacks around the normal behavior.'
+  - ! '    def process_action(*args)'
+  source_line: ! '      run_callbacks(:process_action, action_name) do'
+  source_post_lines:
+  - ! '        super'
+  - ! '      end'
+  - ! '    end'
+  - ''
+  - ! '    module ClassMethods'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_controller/metal/rescue.rb
+  number: 29
+  method: process_action
+  source_pre_lines:
+  - ! '      false'
+  - ! '    end'
+  - ''
+  - ! '    private'
+  - ! '      def process_action(*args)'
+  source_line: ! '        super'
+  source_post_lines:
+  - ! '      rescue Exception => exception'
+  - ! '        request.env[\''action_dispatch.show_detailed_exceptions\''] ||= show_detailed_exceptions?'
+  - ! '        rescue_with_handler(exception) || raise(exception)'
+  - ! '      end'
+  - ! '  end'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_controller/metal/instrumentation.rb
+  number: 30
+  method: block in process_action
+  source_pre_lines:
+  - ! '      }'
+  - ''
+  - ! '      ActiveSupport::Notifications.instrument("start_processing.action_controller",
+    raw_payload.dup)'
+  - ''
+  - ! '      ActiveSupport::Notifications.instrument("process_action.action_controller",
+    raw_payload) do |payload|'
+  source_line: ! '        result = super'
+  source_post_lines:
+  - ! '        payload[:status] = response.status'
+  - ! '        append_info_to_payload(payload)'
+  - ! '        result'
+  - ! '      end'
+  - ! '    end'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activesupport-3.2.8/lib/active_support/notifications.rb
+  number: 123
+  method: block in instrument
+  source_pre_lines:
+  - ! '        notifier.publish(name, *args)'
+  - ! '      end'
+  - ''
+  - ! '      def instrument(name, payload = {})'
+  - ! '        if @instrumenters[name]'
+  source_line: ! '          instrumenter.instrument(name, payload) { yield payload
+    if block_given? }'
+  source_post_lines:
+  - ! '        else'
+  - ! '          yield payload if block_given?'
+  - ! '        end'
+  - ! '      end'
+  - ''
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activesupport-3.2.8/lib/active_support/notifications/instrumenter.rb
+  number: 20
+  method: instrument
+  source_pre_lines:
+  - ! '      # in the passed-in block'
+  - ! '      def instrument(name, payload={})'
+  - ! '        started = Time.now'
+  - ''
+  - ! '        begin'
+  source_line: ! '          yield'
+  source_post_lines:
+  - ! '        rescue Exception => e'
+  - ! '          payload[:exception] = [e.class.name, e.message]'
+  - ! '          raise e'
+  - ! '        ensure'
+  - ! '          @notifier.publish(name, started, Time.now, @id, payload)'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activesupport-3.2.8/lib/active_support/notifications.rb
+  number: 123
+  method: instrument
+  source_pre_lines:
+  - ! '        notifier.publish(name, *args)'
+  - ! '      end'
+  - ''
+  - ! '      def instrument(name, payload = {})'
+  - ! '        if @instrumenters[name]'
+  source_line: ! '          instrumenter.instrument(name, payload) { yield payload
+    if block_given? }'
+  source_post_lines:
+  - ! '        else'
+  - ! '          yield payload if block_given?'
+  - ! '        end'
+  - ! '      end'
+  - ''
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_controller/metal/instrumentation.rb
+  number: 29
+  method: process_action
+  source_pre_lines:
+  - ! '        :path       => (request.fullpath rescue "unknown")'
+  - ! '      }'
+  - ''
+  - ! '      ActiveSupport::Notifications.instrument("start_processing.action_controller",
+    raw_payload.dup)'
+  - ''
+  source_line: ! '      ActiveSupport::Notifications.instrument("process_action.action_controller",
+    raw_payload) do |payload|'
+  source_post_lines:
+  - ! '        result = super'
+  - ! '        payload[:status] = response.status'
+  - ! '        append_info_to_payload(payload)'
+  - ! '        result'
+  - ! '      end'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_controller/metal/params_wrapper.rb
+  number: 207
+  method: process_action
+  source_pre_lines:
+  - ! '        request.request_parameters.merge! wrapped_hash'
+  - ''
+  - ! '        # This will make the wrapped hash displayed in the log file'
+  - ! '        request.filtered_parameters.merge! wrapped_filtered_hash'
+  - ! '      end'
+  source_line: ! '      super'
+  source_post_lines:
+  - ! '    end'
+  - ''
+  - ! '    private'
+  - ''
+  - ! '      # Returns the wrapper key which will use to stored wrapped parameters.'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activerecord-3.2.8/lib/active_record/railties/controller_runtime.rb
+  number: 18
+  method: process_action
+  source_pre_lines:
+  - ! '      def process_action(action, *args)'
+  - ! '        # We also need to reset the runtime before each action'
+  - ! '        # because of queries in middleware or in cases we are streaming'
+  - ! '        # and it won\''t be cleaned up by the method below.'
+  - ! '        ActiveRecord::LogSubscriber.reset_runtime'
+  source_line: ! '        super'
+  source_post_lines:
+  - ! '      end'
+  - ''
+  - ! '      def cleanup_view_runtime'
+  - ! '        if ActiveRecord::Base.connected?'
+  - ! '          db_rt_before_render = ActiveRecord::LogSubscriber.reset_runtime'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/abstract_controller/base.rb
+  number: 121
+  method: process
+  source_pre_lines:
+  - ! '        raise ActionNotFound, "The action \''#{action}\'' could not be found
+    for #{self.class.name}"'
+  - ! '      end'
+  - ''
+  - ! '      @_response_body = nil'
+  - ''
+  source_line: ! '      process_action(action_name, *args)'
+  source_post_lines:
+  - ! '    end'
+  - ''
+  - ! '    # Delegates to the class\'' #controller_path'
+  - ! '    def controller_path'
+  - ! '      self.class.controller_path'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/abstract_controller/rendering.rb
+  number: 45
+  method: process
+  source_pre_lines:
+  - ! '    end'
+  - ''
+  - ! '    # Overwrite process to setup I18n proxy.'
+  - ! '    def process(*) #:nodoc:'
+  - ! '      old_config, I18n.config = I18n.config, I18nProxy.new(I18n.config, lookup_context)'
+  source_line: ! '      super'
+  source_post_lines:
+  - ! '    ensure'
+  - ! '      I18n.config = old_config'
+  - ! '    end'
+  - ''
+  - ! '    module ClassMethods'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_controller/metal.rb
+  number: 203
+  method: dispatch
+  source_pre_lines:
+  - ''
+  - ! '    def dispatch(name, request) #:nodoc:'
+  - ! '      @_request = request'
+  - ! '      @_env = request.env'
+  - ! '      @_env[\''action_controller.instance\''] = self'
+  source_line: ! '      process(name)'
+  source_post_lines:
+  - ! '      to_a'
+  - ! '    end'
+  - ''
+  - ! '    def to_a #:nodoc:'
+  - ! '      response ? response.to_a : [status, headers, response_body]'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_controller/metal/rack_delegation.rb
+  number: 14
+  method: dispatch
+  source_pre_lines:
+  - ! '             :status, :location, :content_type, :to => "@_response"'
+  - ''
+  - ! '    def dispatch(action, request, response = ActionDispatch::Response.new)'
+  - ! '      @_response ||= response'
+  - ! '      @_response.request ||= request'
+  source_line: ! '      super(action, request)'
+  source_post_lines:
+  - ! '    end'
+  - ''
+  - ! '    def response_body=(body)'
+  - ! '      response.body = body if response'
+  - ! '      super'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_controller/metal.rb
+  number: 246
+  method: block in action
+  source_pre_lines:
+  - ! '    #'
+  - ! '    # ==== Returns'
+  - ! '    # * <tt>proc</tt> - A rack application'
+  - ! '    def self.action(name, klass = ActionDispatch::Request)'
+  - ! '      middleware_stack.build(name.to_s) do |env|'
+  source_line: ! '        new.dispatch(name, klass.new(env))'
+  source_post_lines:
+  - ! '      end'
+  - ! '    end'
+  - ! '  end'
+  - end
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/routing/route_set.rb
+  number: 73
+  method: call
+  source_pre_lines:
+  - ! '          end'
+  - ! '          controller.get(controller_name)'
+  - ! '        end'
+  - ''
+  - ! '        def dispatch(controller, action, env)'
+  source_line: ! '          controller.action(action).call(env)'
+  source_post_lines:
+  - ! '        end'
+  - ''
+  - ! '        def normalize_controller!(params)'
+  - ! '          params[:controller] = params[:controller].underscore if params.key?(:controller)'
+  - ! '        end'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/routing/route_set.rb
+  number: 73
+  method: dispatch
+  source_pre_lines:
+  - ! '          end'
+  - ! '          controller.get(controller_name)'
+  - ! '        end'
+  - ''
+  - ! '        def dispatch(controller, action, env)'
+  source_line: ! '          controller.action(action).call(env)'
+  source_post_lines:
+  - ! '        end'
+  - ''
+  - ! '        def normalize_controller!(params)'
+  - ! '          params[:controller] = params[:controller].underscore if params.key?(:controller)'
+  - ! '        end'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/routing/route_set.rb
+  number: 36
+  method: call
+  source_pre_lines:
+  - ! '          # Just raise undefined constant errors if a controller was specified
+    as default.'
+  - ! '          unless controller = controller(params, @defaults.key?(:controller))'
+  - ! '            return [404, {\''X-Cascade\'' => \''pass\''}, []]'
+  - ! '          end'
+  - ''
+  source_line: ! '          dispatch(controller, params[:action], env)'
+  source_post_lines:
+  - ! '        end'
+  - ''
+  - ! '        def prepare_params!(params)'
+  - ! '          normalize_controller!(params)'
+  - ! '          merge_default_action!(params)'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/journey-1.0.4/lib/journey/router.rb
+  number: 68
+  method: block in call
+  source_pre_lines:
+  - ! '          env[\''PATH_INFO\'']   = Utils.normalize_path(match.post_match)'
+  - ! '        end'
+  - ''
+  - ! '        env[@params_key] = (set_params || {}).merge parameters'
+  - ''
+  source_line: ! '        status, headers, body = route.app.call(env)'
+  source_post_lines:
+  - ''
+  - ! '        if \''pass\'' == headers[\''X-Cascade\'']'
+  - ! '          env[\''SCRIPT_NAME\''] = script_name'
+  - ! '          env[\''PATH_INFO\'']   = path_info'
+  - ! '          env[@params_key]   = set_params'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/journey-1.0.4/lib/journey/router.rb
+  number: 56
+  method: each
+  source_pre_lines:
+  - ! '    end'
+  - ''
+  - ! '    def call env'
+  - ! '      env[\''PATH_INFO\''] = Utils.normalize_path env[\''PATH_INFO\'']'
+  - ''
+  source_line: ! '      find_routes(env).each do |match, parameters, route|'
+  source_post_lines:
+  - ! '        script_name, path_info, set_params = env.values_at(\''SCRIPT_NAME\'','
+  - ! '                                                           \''PATH_INFO\'','
+  - ! '                                                           @params_key)'
+  - ''
+  - ! '        unless route.path.anchored'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/journey-1.0.4/lib/journey/router.rb
+  number: 56
+  method: call
+  source_pre_lines:
+  - ! '    end'
+  - ''
+  - ! '    def call env'
+  - ! '      env[\''PATH_INFO\''] = Utils.normalize_path env[\''PATH_INFO\'']'
+  - ''
+  source_line: ! '      find_routes(env).each do |match, parameters, route|'
+  source_post_lines:
+  - ! '        script_name, path_info, set_params = env.values_at(\''SCRIPT_NAME\'','
+  - ! '                                                           \''PATH_INFO\'','
+  - ! '                                                           @params_key)'
+  - ''
+  - ! '        unless route.path.anchored'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/routing/route_set.rb
+  number: 600
+  method: call
+  source_pre_lines:
+  - ! '        }))'
+  - ! '      end'
+  - ''
+  - ! '      def call(env)'
+  - ! '        finalize!'
+  source_line: ! '        @router.call(env)'
+  source_post_lines:
+  - ! '      end'
+  - ''
+  - ! '      def recognize_path(path, environment = {})'
+  - ! '        method = (environment[:method] || "GET").to_s.upcase'
+  - ! '        path = Journey::Router::Utils.normalize_path(path) unless path =~ %r{://}'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/middleware/best_standards_support.rb
+  number: 17
+  method: call
+  source_pre_lines:
+  - ! '        nil'
+  - ! '      end'
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  source_line: ! '      status, headers, body = @app.call(env)'
+  source_post_lines:
+  - ! '      headers["X-UA-Compatible"] = @header'
+  - ! '      [status, headers, body]'
+  - ! '    end'
+  - ! '  end'
+  - end
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/rack-1.4.1/lib/rack/etag.rb
+  number: 23
+  method: call
+  source_pre_lines:
+  - ! '      @cache_control = cache_control'
+  - ! '      @no_cache_control = no_cache_control'
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  source_line: ! '      status, headers, body = @app.call(env)'
+  source_post_lines:
+  - ''
+  - ! '      if etag_status?(status) && etag_body?(body) && !skip_caching?(headers)'
+  - ! '        digest, body = digest_body(body)'
+  - ! '        headers[\''ETag\''] = %("#{digest}") if digest'
+  - ! '      end'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/rack-1.4.1/lib/rack/conditionalget.rb
+  number: 25
+  method: call
+  source_pre_lines:
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  - ! '      case env[\''REQUEST_METHOD\'']'
+  - ! '      when "GET", "HEAD"'
+  source_line: ! '        status, headers, body = @app.call(env)'
+  source_post_lines:
+  - ! '        headers = Utils::HeaderHash.new(headers)'
+  - ! '        if status == 200 && fresh?(env, headers)'
+  - ! '          status = 304'
+  - ! '          headers.delete(\''Content-Type\'')'
+  - ! '          headers.delete(\''Content-Length\'')'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/middleware/head.rb
+  number: 14
+  method: call
+  source_pre_lines:
+  - ! '        env["REQUEST_METHOD"] = "GET"'
+  - ! '        env["rack.methodoverride.original_method"] = "HEAD"'
+  - ! '        status, headers, _ = @app.call(env)'
+  - ! '        [status, headers, []]'
+  - ! '      else'
+  source_line: ! '        @app.call(env)'
+  source_post_lines:
+  - ! '      end'
+  - ! '    end'
+  - ! '  end'
+  - end
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/middleware/params_parser.rb
+  number: 21
+  method: call
+  source_pre_lines:
+  - ! '    def call(env)'
+  - ! '      if params = parse_formatted_parameters(env)'
+  - ! '        env["action_dispatch.request.request_parameters"] = params'
+  - ! '      end'
+  - ''
+  source_line: ! '      @app.call(env)'
+  source_post_lines:
+  - ! '    end'
+  - ''
+  - ! '    private'
+  - ! '      def parse_formatted_parameters(env)'
+  - ! '        request = Request.new(env)'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/middleware/flash.rb
+  number: 242
+  method: call
+  source_pre_lines:
+  - ! '    def call(env)'
+  - ! '      if (session = env[\''rack.session\'']) && (flash = session[\''flash\''])'
+  - ! '        flash.sweep'
+  - ! '      end'
+  - ''
+  source_line: ! '      @app.call(env)'
+  source_post_lines:
+  - ! '    ensure'
+  - ! '      session    = env[\''rack.session\''] || {}'
+  - ! '      flash_hash = env[KEY]'
+  - ''
+  - ! '      if flash_hash'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/rack-1.4.1/lib/rack/session/abstract/id.rb
+  number: 205
+  method: context
+  source_pre_lines:
+  - ! '          context(env)'
+  - ! '        end'
+  - ''
+  - ! '        def context(env, app=@app)'
+  - ! '          prepare_session(env)'
+  source_line: ! '          status, headers, body = app.call(env)'
+  source_post_lines:
+  - ! '          commit_session(env, status, headers, body)'
+  - ! '        end'
+  - ''
+  - ! '        private'
+  - ''
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/rack-1.4.1/lib/rack/session/abstract/id.rb
+  number: 200
+  method: call
+  source_pre_lines:
+  - ! '          @cookie_only = @default_options.delete(:cookie_only)'
+  - ! '          initialize_sid'
+  - ! '        end'
+  - ''
+  - ! '        def call(env)'
+  source_line: ! '          context(env)'
+  source_post_lines:
+  - ! '        end'
+  - ''
+  - ! '        def context(env, app=@app)'
+  - ! '          prepare_session(env)'
+  - ! '          status, headers, body = app.call(env)'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/middleware/cookies.rb
+  number: 339
+  method: call
+  source_pre_lines:
+  - ! '      @app = app'
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  - ! '      cookie_jar = nil'
+  source_line: ! '      status, headers, body = @app.call(env)'
+  source_post_lines:
+  - ''
+  - ! '      if cookie_jar = env[\''action_dispatch.cookies\'']'
+  - ! '        cookie_jar.write(headers)'
+  - ! '        if headers[HTTP_HEADER].respond_to?(:join)'
+  - ! '          headers[HTTP_HEADER] = headers[HTTP_HEADER].join("\n")'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activerecord-3.2.8/lib/active_record/query_cache.rb
+  number: 64
+  method: call
+  source_pre_lines:
+  - ''
+  - ! '    def call(env)'
+  - ! '      old = ActiveRecord::Base.connection.query_cache_enabled'
+  - ! '      ActiveRecord::Base.connection.enable_query_cache!'
+  - ''
+  source_line: ! '      status, headers, body = @app.call(env)'
+  source_post_lines:
+  - ! '      [status, headers, BodyProxy.new(old, body, ActiveRecord::Base.connection_id)]'
+  - ! '    rescue Exception => e'
+  - ! '      ActiveRecord::Base.connection.clear_query_cache'
+  - ! '      unless old'
+  - ! '        ActiveRecord::Base.connection.disable_query_cache!'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activerecord-3.2.8/lib/active_record/connection_adapters/abstract/connection_pool.rb
+  number: 473
+  method: call
+  source_pre_lines:
+  - ! '      end'
+  - ''
+  - ! '      def call(env)'
+  - ! '        testing = env.key?(\''rack.test\'')'
+  - ''
+  source_line: ! '        status, headers, body = @app.call(env)'
+  source_post_lines:
+  - ''
+  - ! '        [status, headers, Proxy.new(body, testing)]'
+  - ! '      rescue'
+  - ! '        ActiveRecord::Base.clear_active_connections! unless testing'
+  - ! '        raise'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/middleware/callbacks.rb
+  number: 28
+  method: block in call
+  source_pre_lines:
+  - ! '      @app = app'
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  - ! '      run_callbacks :call do'
+  source_line: ! '        @app.call(env)'
+  source_post_lines:
+  - ! '      end'
+  - ! '    end'
+  - ! '  end'
+  - end
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activesupport-3.2.8/lib/active_support/callbacks.rb
+  number: 405
+  method: _run__3923577450424611572__call__1020331159509592676__callbacks
+  source_pre_lines:
+  - ! '          class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1'
+  - ! '            def #{name}() #{str} end'
+  - ! '            protected :#{name}'
+  - ! '          RUBY_EVAL'
+  - ! '        end'
+  source_line: ! '        object.send(name, &blk)'
+  source_post_lines:
+  - ! '      end'
+  - ''
+  - ! '      def __reset_runner(symbol)'
+  - ! '        name = __callback_runner_name(nil, symbol)'
+  - ! '        undef_method(name) if method_defined?(name)'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activesupport-3.2.8/lib/active_support/callbacks.rb
+  number: 405
+  method: __run_callback
+  source_pre_lines:
+  - ! '          class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1'
+  - ! '            def #{name}() #{str} end'
+  - ! '            protected :#{name}'
+  - ! '          RUBY_EVAL'
+  - ! '        end'
+  source_line: ! '        object.send(name, &blk)'
+  source_post_lines:
+  - ! '      end'
+  - ''
+  - ! '      def __reset_runner(symbol)'
+  - ! '        name = __callback_runner_name(nil, symbol)'
+  - ! '        undef_method(name) if method_defined?(name)'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activesupport-3.2.8/lib/active_support/callbacks.rb
+  number: 385
+  method: _run_call_callbacks
+  source_pre_lines:
+  - ! '      def __define_runner(symbol) #:nodoc:'
+  - ! '        runner_method = "_run_#{symbol}_callbacks" '
+  - ! '        unless private_method_defined?(runner_method)'
+  - ! '          class_eval <<-RUBY_EVAL, __FILE__, __LINE__ + 1'
+  - ! '            def #{runner_method}(key = nil, &blk)'
+  source_line: ! '              self.class.__run_callback(key, :#{symbol}, self, &blk)'
+  source_post_lines:
+  - ! '            end'
+  - ! '            private :#{runner_method}'
+  - ! '          RUBY_EVAL'
+  - ! '        end'
+  - ! '      end'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activesupport-3.2.8/lib/active_support/callbacks.rb
+  number: 81
+  method: run_callbacks
+  source_pre_lines:
+  - ! '    #   run_callbacks :save do'
+  - ! '    #     save'
+  - ! '    #   end'
+  - ! '    #'
+  - ! '    def run_callbacks(kind, *args, &block)'
+  source_line: ! '      send("_run_#{kind}_callbacks", *args, &block)'
+  source_post_lines:
+  - ! '    end'
+  - ''
+  - ! '    private'
+  - ''
+  - ! '    # A hook invoked everytime a before callback is halted.'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/middleware/callbacks.rb
+  number: 27
+  method: call
+  source_pre_lines:
+  - ! '    def initialize(app)'
+  - ! '      @app = app'
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  source_line: ! '      run_callbacks :call do'
+  source_post_lines:
+  - ! '        @app.call(env)'
+  - ! '      end'
+  - ! '    end'
+  - ! '  end'
+  - end
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/middleware/reloader.rb
+  number: 65
+  method: call
+  source_pre_lines:
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  - ! '      @validated = @condition.call'
+  - ! '      prepare!'
+  source_line: ! '      response = @app.call(env)'
+  source_post_lines:
+  - ! '      response[2] = ActionDispatch::BodyProxy.new(response[2]) { cleanup! }'
+  - ! '      response'
+  - ! '    rescue Exception'
+  - ! '      cleanup!'
+  - ! '      raise'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/middleware/remote_ip.rb
+  number: 31
+  method: call
+  source_pre_lines:
+  - ! '      end'
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  - ! '      env["action_dispatch.remote_ip"] = GetIp.new(env, self)'
+  source_line: ! '      @app.call(env)'
+  source_post_lines:
+  - ! '    end'
+  - ''
+  - ! '    class GetIp'
+  - ! '      def initialize(env, middleware)'
+  - ! '        @env          = env'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/middleware/debug_exceptions.rb
+  number: 16
+  method: call
+  source_pre_lines:
+  - ! '      @app = app'
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  - ! '      begin'
+  source_line: ! '        response = @app.call(env)'
+  source_post_lines:
+  - ''
+  - ! '        if response[1][\''X-Cascade\''] == \''pass\'''
+  - ! '          body = response[2]'
+  - ! '          body.close if body.respond_to?(:close)'
+  - ! '          raise ActionController::RoutingError, "No route matches [#{env[\''REQUEST_METHOD\'']}]
+    #{env[\''PATH_INFO\''].inspect}"'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/middleware/show_exceptions.rb
+  number: 56
+  method: call
+  source_pre_lines:
+  - ! '      @exceptions_app = exceptions_app'
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  - ! '      begin'
+  source_line: ! '        response  = @app.call(env)'
+  source_post_lines:
+  - ! '      rescue Exception => exception'
+  - ! '        raise exception if env[\''action_dispatch.show_exceptions\''] == false'
+  - ! '      end'
+  - ''
+  - ! '      response || render_exception(env, exception)'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/railties-3.2.8/lib/rails/rack/logger.rb
+  number: 26
+  method: call_app
+  source_pre_lines:
+  - ''
+  - ! '      def call_app(env)'
+  - ! '        request = ActionDispatch::Request.new(env)'
+  - ! '        path = request.filtered_path'
+  - ! '        Rails.logger.info "\n\nStarted #{request.request_method} \"#{path}\"
+    for #{request.ip} at #{Time.now.to_default_s}"'
+  source_line: ! '        @app.call(env)'
+  source_post_lines:
+  - ! '      ensure'
+  - ! '        ActiveSupport::LogSubscriber.flush_all!'
+  - ! '      end'
+  - ''
+  - ! '      def compute_tags(env)'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/railties-3.2.8/lib/rails/rack/logger.rb
+  number: 16
+  method: call
+  source_pre_lines:
+  - ''
+  - ! '      def call(env)'
+  - ! '        if @tags'
+  - ! '          Rails.logger.tagged(compute_tags(env)) { call_app(env) }'
+  - ! '        else'
+  source_line: ! '          call_app(env)'
+  source_post_lines:
+  - ! '        end'
+  - ! '      end'
+  - ''
+  - ! '    protected'
+  - ''
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/middleware/request_id.rb
+  number: 22
+  method: call
+  source_pre_lines:
+  - ! '      @app = app'
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  - ! '      env["action_dispatch.request_id"] = external_request_id(env) || internal_request_id'
+  source_line: ! '      status, headers, body = @app.call(env)'
+  source_post_lines:
+  - ''
+  - ! '      headers["X-Request-Id"] = env["action_dispatch.request_id"]'
+  - ! '      [ status, headers, body ]'
+  - ! '    end'
+  - ''
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/rack-1.4.1/lib/rack/methodoverride.rb
+  number: 21
+  method: call
+  source_pre_lines:
+  - ! '          env["rack.methodoverride.original_method"] = env["REQUEST_METHOD"]'
+  - ! '          env["REQUEST_METHOD"] = method'
+  - ! '        end'
+  - ! '      end'
+  - ''
+  source_line: ! '      @app.call(env)'
+  source_post_lines:
+  - ! '    end'
+  - ''
+  - ! '    def method_override(env)'
+  - ! '      req = Request.new(env)'
+  - ! '      method = req.POST[METHOD_OVERRIDE_PARAM_KEY] ||'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/rack-1.4.1/lib/rack/runtime.rb
+  number: 17
+  method: call
+  source_pre_lines:
+  - ! '      @header_name << "-#{name}" if name'
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  - ! '      start_time = Time.now'
+  source_line: ! '      status, headers, body = @app.call(env)'
+  source_post_lines:
+  - ! '      request_time = Time.now - start_time'
+  - ''
+  - ! '      if !headers.has_key?(@header_name)'
+  - ! '        headers[@header_name] = "%0.6f" % request_time'
+  - ! '      end'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/activesupport-3.2.8/lib/active_support/cache/strategy/local_cache.rb
+  number: 72
+  method: call
+  source_pre_lines:
+  - ! '            self'
+  - ! '          end'
+  - ''
+  - ! '          def call(env)'
+  - ! '            Thread.current[thread_local_key] = LocalStore.new'
+  source_line: ! '            @app.call(env)'
+  source_post_lines:
+  - ! '          ensure'
+  - ! '            Thread.current[thread_local_key] = nil'
+  - ! '          end'
+  - ! '        end'
+  - ''
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/rack-1.4.1/lib/rack/lock.rb
+  number: 15
+  method: call
+  source_pre_lines:
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  - ! '      old, env[FLAG] = env[FLAG], false'
+  - ! '      @mutex.lock'
+  source_line: ! '      response = @app.call(env)'
+  source_post_lines:
+  - ! '      response[2] = BodyProxy.new(response[2]) { @mutex.unlock }'
+  - ! '      response'
+  - ! '    rescue Exception'
+  - ! '      @mutex.unlock'
+  - ! '      raise'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/actionpack-3.2.8/lib/action_dispatch/middleware/static.rb
+  number: 62
+  method: call
+  source_pre_lines:
+  - ! '          env["PATH_INFO"] = match'
+  - ! '          return @file_handler.call(env)'
+  - ! '        end'
+  - ! '      end'
+  - ''
+  source_line: ! '      @app.call(env)'
+  source_post_lines:
+  - ! '    end'
+  - ! '  end'
+  - end
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194/gems/crashdesk-rack-0.1.0/lib/crashdesk-rack/rack.rb
+  number: 9
+  method: call
+  source_pre_lines:
+  - ! '      @app = app'
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  - ! '      begin'
+  source_line: ! '        status, headers, body = @app.call(env)'
+  source_post_lines:
+  - ! '      rescue Exception => exception'
+  - ! '        $stdout.puts "Crashdesk rack rescue: #{exception.message}"'
+  - ''
+  - ! '        request = ::Rack::Request.new(env)'
+  - ! '        context = RackContext.new(env, request)'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/railties-3.2.8/lib/rails/engine.rb
+  number: 479
+  method: call
+  source_pre_lines:
+  - ! '    def endpoint'
+  - ! '      self.class.endpoint || routes'
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  source_line: ! '      app.call(env.merge!(env_config))'
+  source_post_lines:
+  - ! '    end'
+  - ''
+  - ! '    def env_config'
+  - ! '      @env_config ||= {'
+  - ! '        \''action_dispatch.routes\'' => routes'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/railties-3.2.8/lib/rails/application.rb
+  number: 223
+  method: call
+  source_pre_lines:
+  - ! '      config.helpers_paths'
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  - ! '      env["ORIGINAL_FULLPATH"] = build_original_fullpath(env)'
+  source_line: ! '      super(env)'
+  source_post_lines:
+  - ! '    end'
+  - ''
+  - ! '  protected'
+  - ''
+  - ! '    alias :build_middleware_stack :app'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/rack-1.4.1/lib/rack/content_length.rb
+  number: 14
+  method: call
+  source_pre_lines:
+  - ! '    def initialize(app)'
+  - ! '      @app = app'
+  - ! '    end'
+  - ''
+  - ! '    def call(env)'
+  source_line: ! '      status, headers, body = @app.call(env)'
+  source_post_lines:
+  - ! '      headers = HeaderHash.new(headers)'
+  - ''
+  - ! '      if !STATUS_WITH_NO_ENTITY_BODY.include?(status.to_i) &&'
+  - ! '         !headers[\''Content-Length\''] &&'
+  - ! '         !headers[\''Transfer-Encoding\''] &&'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/railties-3.2.8/lib/rails/rack/log_tailer.rb
+  number: 17
+  method: call
+  source_pre_lines:
+  - ! '          @file = ::File.open(path, \''r\'')'
+  - ! '        end'
+  - ! '      end'
+  - ''
+  - ! '      def call(env)'
+  source_line: ! '        response = @app.call(env)'
+  source_post_lines:
+  - ! '        tail!'
+  - ! '        response'
+  - ! '      end'
+  - ''
+  - ! '      def tail!'
+- file: /Users/zdenko/.rvm/gems/ruby-1.9.3-p194@global/gems/rack-1.4.1/lib/rack/handler/webrick.rb
+  number: 59
+  method: service
+  source_pre_lines:
+  - ! '          path, n = req.request_uri.path, env["SCRIPT_NAME"].length'
+  - ! '          env["PATH_INFO"] = path[n, path.length-n]'
+  - ! '        end'
+  - ! '        env["REQUEST_PATH"] ||= [env["SCRIPT_NAME"], env["PATH_INFO"]].join'
+  - ''
+  source_line: ! '        status, headers, body = @app.call(env)'
+  source_post_lines:
+  - ! '        begin'
+  - ! '          res.status = status.to_i'
+  - ! '          headers.each { |k, vs|'
+  - ! '            if k.downcase == "set-cookie"'
+  - ! '              res.cookies.concat vs.split("\n")'
+- file: /Users/zdenko/.rvm/rubies/ruby-1.9.3-p194/lib/ruby/1.9.1/webrick/httpserver.rb
+  number: 138
+  method: service
+  source_pre_lines:
+  - ! '      raise HTTPStatus::NotFound, "`#{req.path}\'' not found." unless servlet'
+  - ! '      req.script_name = script_name'
+  - ! '      req.path_info = path_info'
+  - ! '      si = servlet.get_instance(self, *options)'
+  - ! '      @logger.debug(format("%s is invoked.", si.class.name))'
+  source_line: ! '      si.service(req, res)'
+  source_post_lines:
+  - ! '    end'
+  - ''
+  - ! '    def do_OPTIONS(req, res)'
+  - ! '      res["allow"] = "GET,HEAD,POST,OPTIONS"'
+  - ! '    end'
+- file: /Users/zdenko/.rvm/rubies/ruby-1.9.3-p194/lib/ruby/1.9.1/webrick/httpserver.rb
+  number: 94
+  method: run
+  source_pre_lines:
+  - ! '          elsif callback = server[:RequestHandler]'
+  - ! '            msg = ":RequestHandler is deprecated, please use :RequestCallback"'
+  - ! '            @logger.warn(msg)'
+  - ! '            callback.call(req, res)'
+  - ! '          end'
+  source_line: ! '          server.service(req, res)'
+  source_post_lines:
+  - ! '        rescue HTTPStatus::EOFError, HTTPStatus::RequestTimeout => ex'
+  - ! '          res.set_error(ex)'
+  - ! '        rescue HTTPStatus::Error => ex'
+  - ! '          @logger.error(ex.message)'
+  - ! '          res.set_error(ex)'
+- file: /Users/zdenko/.rvm/rubies/ruby-1.9.3-p194/lib/ruby/1.9.1/webrick/server.rb
+  number: 191
+  method: block in start_thread
+  source_pre_lines:
+  - ! '          rescue SocketError'
+  - ! '            @logger.debug "accept: <address unknown>"'
+  - ! '            raise'
+  - ! '          end'
+  - ! '          call_callback(:AcceptCallback, sock)'
+  source_line: ! '          block ? block.call(sock) : run(sock)'
+  source_post_lines:
+  - ! '        rescue Errno::ENOTCONN'
+  - ! '          @logger.debug "Errno::ENOTCONN raised"'
+  - ! '        rescue ServerError => ex'
+  - ! '          msg = "#{ex.class}: #{ex.message}\n\t#{ex.backtrace[0]}"'
+  - ! '          @logger.error msg'
+exception_class: NameError
+exception_message: uninitialized constant HomeController::Test3
+context:
+  url: http://localhost:3001/
+  controller_name: HomeController
+  action_name: 
+  parameters: {}
+  request_method: GET
+  remote_ip: 127.0.0.1
+  headers:
+    Host: localhost:3001
+    Connection: keep-alive
+    Cache-Control: max-age=0
+    User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_7_5) AppleWebKit/537.11
+      (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11
+    Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+    Accept-Encoding: gzip,deflate,sdch
+    Accept-Language: en-US,en;q=0.8
+    Accept-Charset: ISO-8859-1,utf-8;q=0.7,*;q=0.3
+    Cookie: mp_eb36921b3a735f99823bf1241e4c65a1_mixpanel=%7B%22distinct_id%22%3A%20%22139ddbe52d6174-0cdc862a5-7c201861-13c680-139ddbe52d754e%22%2C%22%24initial_referrer%22%3A%20%22http%3A%2F%2Flocalhost%3A3000%2Fmembers%2Fsearch%22%2C%22%24initial_referring_domain%22%3A%20%22localhost%3A3000%22%7D;
+      _crashdesk_session=[FILTERED]
+    Version: HTTP/1.1
+  session:
+    session_id: ''
+    data: {}
