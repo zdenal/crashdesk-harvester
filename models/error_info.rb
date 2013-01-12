@@ -15,5 +15,6 @@ class ErrorInfo
 
   # Relations
   embeds_many :error_details
+  embeds_many :user_feedback
   embedded_in :app
 end

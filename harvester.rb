@@ -20,9 +20,22 @@ end
 get '/debug' do
 end
 
+post '/v1/user_feedback' do
+  app_key = params[:app_key]
+  # app_key = App.first.id # todo
+  if App.where(id: app_key).exists?
+    feedback = UserFeedbackLog.new(params.symbolize_keys)
+    feedback.save
+    Resque.enqueue(UserFeedbackProcessor, feedback.id)
+    logger.info "[INFO] #{Time.now.to_s}: #{app_key} got feedback #{feedback.id}"
+  else
+    logger.error "[ERROR] #{Time.now.to_s}: invalid app_id try to connect"
+  end
+end
+
 post '/v1/crashes' do
   app_key = request.env['HTTP_X_CRASHDESK_APPKEY']
-  #app_key = App.first._id
+  # app_key = App.first._id
   if App.where(id: app_key).exists?
     e = JSON.parse(request.env["rack.input"].read)
     log = Crashlog.new(e)
